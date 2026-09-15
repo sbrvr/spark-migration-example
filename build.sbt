@@ -17,6 +17,19 @@ ThisBuild / scalaVersion := "2.11.12"
 ThisBuild / version      := "0.1.0"
 ThisBuild / organization := "com.databricks.migrationgenie"
 
+// ---- Java 8 only (build AND run) -------------------------------------------
+// Emit Java 8 bytecode...
+ThisBuild / scalacOptions += "-target:jvm-1.8"
+ThisBuild / javacOptions ++= Seq("-source", "1.8", "-target", "1.8")
+// ...and fail fast if this JVM (which also runs `sbt run`) is not Java 8.
+ThisBuild / initialize := {
+  val _ = (ThisBuild / initialize).value
+  val current = sys.props("java.specification.version")
+  assert(current == "1.8",
+    s"Java 8 is required to build and run this project (found $current). " +
+      "Set JAVA_HOME to a Java 8 JDK.")
+}
+
 // ---- Shared dependency coordinates -----------------------------------------
 // NOTE ON SCOPE: spark-core / spark-sql are `compile` here so the app runs
 // locally via `sbt orderProcessing/run`. For a real cluster deploy, change them
