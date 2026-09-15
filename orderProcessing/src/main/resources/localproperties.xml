@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<!-- LOCAL mode config (used when spark.master starts with "local").
+     Paths are BARE (no scheme) — PathResolver prepends file:// in code.
+     All sources are files; Postgres is not used. -->
+<properties>
+  <entry key="data.order.path">/tmp/sparktestdata/orders/orders.csv</entry>
+  <entry key="data.orderDetails.path">/tmp/sparktestdata/order_details/order_details.csv</entry>
+  <entry key="data.product.path">/tmp/sparktestdata/products/products.csv</entry>
+  <entry key="data.region.path">/tmp/sparktestdata/regions/regions.csv</entry>
+  <entry key="data.product.source">file</entry>
+  <entry key="data.region.source">file</entry>
+  <entry key="output.bronze.path">/tmp/sparktestdata/output/bronze</entry>
+  <entry key="output.silver.path">/tmp/sparktestdata/output/silver</entry>
+  <entry key="output.gold.path">/tmp/sparktestdata/output/gold</entry>
+</properties>

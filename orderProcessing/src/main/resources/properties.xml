@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<!-- PROD mode config (used when spark.master is not local, e.g. yarn).
+     Paths are BARE (no scheme) — PathResolver prepends hdfs:// in code, and the
+     namenode comes from the cluster's fs.defaultFS (empty authority => hdfs:///...).
+     product/region are read from Postgres via JDBC. Replace <host>/<db>/creds. -->
+<properties>
+  <entry key="data.order.path">/data/raw/orders</entry>
+  <entry key="data.orderDetails.path">/data/raw/order_details</entry>
+  <entry key="data.product.source">jdbc</entry>
+  <entry key="data.region.source">jdbc</entry>
+  <entry key="output.bronze.path">/data/bronze</entry>
+  <entry key="output.silver.path">/data/silver</entry>
+  <entry key="output.gold.path">/data/gold</entry>
+  <entry key="postgres.url">jdbc:postgresql://HOST:5432/DB</entry>
+  <entry key="postgres.user">USER</entry>
+  <entry key="postgres.password">PASSWORD</entry>
+  <entry key="postgres.driver">org.postgresql.Driver</entry>
+  <!-- The product/region SQL queries are defined in code (BronzeIngestion.ProductQuery /
+       RegionQuery), not here — only connection settings belong in this file. -->
+</properties>
