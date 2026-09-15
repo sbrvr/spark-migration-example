@@ -1,6 +1,6 @@
 # spark-migration-example
 
-A **legacy** Scala/Spark order-processing app (Spark 2.4 · Scala 2.11 · Java 8 · sbt).
+A **legacy SBT build** Scala/Spark order-processing app (Spark 2.4 · Scala 2.11 · Java 8 · sbt).
 It follows the medallion pattern (Bronze → Silver → Gold) over Parquet, is RDD-first
 (DataFrames only for Parquet/JDBC I/O and the Gold joins).
 
