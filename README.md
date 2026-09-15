@@ -19,27 +19,7 @@ It follows the medallion pattern (Bronze → Silver → Gold) over Parquet, is R
   ```
 - **sbt** — the build pins sbt `1.9.9` (via `project/build.properties`); the launcher honors it.
 
-### Behind the Databricks Maven proxy (restricted network)
 
-On machines where Maven Central is not directly reachable (only an internal mirror is),
-point sbt/coursier at the proxy declared in `~/.m2/settings.xml`
-(`https://maven-proxy.dev.databricks.com`). sbt does **not** read `~/.m2/settings.xml`, so:
-
-1. Create `~/.sbt/repositories`:
-   ```
-   [repositories]
-     local
-     db-maven-proxy: https://maven-proxy.dev.databricks.com/
-     maven-central: https://maven-proxy.dev.databricks.com/
-   ```
-2. Add these flags to **every** sbt command below so it uses the proxy for both the sbt
-   launcher and project dependencies:
-   ```
-   -Dsbt.override.build.repos=true -Dsbt.repository.config="$HOME/.sbt/repositories"
-   ```
-   e.g. `sbt -Dsbt.override.build.repos=true -Dsbt.repository.config="$HOME/.sbt/repositories" test`.
-
-If Maven Central is reachable directly, skip this section and run the plain commands as-is.
 
 ## Build
 
